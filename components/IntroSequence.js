@@ -67,7 +67,7 @@ export default function IntroSequence({ onComplete }){
               <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1, transition: { duration: 0.8, ease: 'easeInOut' } }}>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileTap={{ scale: 1.08 }}
                   onClick={async ()=>{
                     // play fade-out then call onComplete
                     setVisible(false)
