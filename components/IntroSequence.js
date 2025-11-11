@@ -7,10 +7,8 @@ export default function IntroSequence({ onComplete }){
   const [display, setDisplay] = useState('')
   const [visible, setVisible] = useState(true)
   const indexRef = useRef(0)
-  const mounted = useRef(true)
 
   useEffect(()=>{
-    mounted.current = true
     if(stage === 'typing'){
       const t = setInterval(()=>{
         indexRef.current += 1
@@ -43,8 +41,6 @@ export default function IntroSequence({ onComplete }){
       }, 40)
       return ()=> clearInterval(t2)
     }
-
-    return ()=>{ mounted.current = false }
   },[stage])
 
   return (

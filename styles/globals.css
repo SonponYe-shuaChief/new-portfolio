@@ -6,14 +6,15 @@
 :root{
   --bg: #ffffff;
   --text: #007f5f;
-  --accent: #ff2b2b;
+  /* accent changed to green-only palette per request */
+  --accent: #00b37a;
 }
 
 html,body,#__next{
   height:100%;
 }
-/* enlarge overall scale slightly: increase root font-size so Tailwind rem-based sizes scale up */
-html{font-size:18px}
+/* increase overall scale: increase root font-size so Tailwind rem-based sizes scale up */
+html{font-size:20px}
 body{
   background:var(--bg);
   color:var(--text);
@@ -22,10 +23,18 @@ body{
   -moz-osx-font-smoothing:grayscale;
 }
 
+/* Consistent vertical spacing for sections */
+.section{
+  padding-block: 3.5rem; /* top + bottom spacing */
+}
+@media (min-width: 768px){
+  .section{ padding-block: 4.5rem }
+}
+
 /* subtle glowing red button */
 .btn-press{
   background:var(--accent);
-  box-shadow:0 6px 18px rgba(255,43,43,0.14), 0 0 30px rgba(255,43,43,0.06) inset;
+  box-shadow:0 6px 18px rgba(0,179,122,0.14), 0 0 30px rgba(0,179,122,0.06) inset;
 }
 
 .btn-press:hover{
@@ -47,6 +56,64 @@ body{
   margin-left:auto;
   margin-right:auto;
   /* slightly larger side padding to match larger typography */
-  padding-left:36px;
-  padding-right:36px;
+  padding-left:40px;
+  padding-right:40px;
+}
+
+/* make the main press button a bit larger and more tappable */
+.btn-press{
+  padding:0.7rem 1.1rem;
+  font-size:1.05rem;
+  font-weight:600;
+  border-radius:9999px;
+}
+
+/* avatar ring and hero decorations (use existing color vars only) */
+.avatar-ring{
+  display:inline-block;
+  border-radius:9999px;
+  padding:6px; /* ring thickness */
+  background: radial-gradient(circle at 20% 20%, rgba(0,179,122,0.09), transparent 20%), radial-gradient(circle at 80% 80%, rgba(0,127,95,0.06), transparent 25%);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06), 0 0 40px rgba(0,127,95,0.04) inset;
+}
+
+/* subtle hero decorative glow behind content */
+.hero-decor{
+  position:absolute;
+  left:0;right:0;top:0;height:55vh;
+  pointer-events:none;
+  background: radial-gradient(600px 300px at 10% 10%, rgba(0,127,95,0.04), transparent 10%), radial-gradient(500px 250px at 90% 20%, rgba(0,179,122,0.035), transparent 12%);
+  mix-blend-mode: multiply;
+}
+
+/* animated decorative border used for hero and card outlines */
+.animated-border{
+  position:relative;
+  border-radius:0.75rem;
+  /* create a thin animated halo using a pseudo element */
+  z-index:0;
+}
+.animated-border::before{
+  content:"";
+  position:absolute;
+  inset:-3px;
+  z-index:-1;
+  border-radius:calc(0.75rem + 3px);
+  background:linear-gradient(90deg, rgba(0,179,122,0.25), rgba(0,127,95,0.25), rgba(0,179,122,0.25));
+  background-size:200% 200%;
+  filter:blur(8px);
+  opacity:0.9;
+  animation: animatedGradient 4s linear infinite;
+}
+
+@keyframes animatedGradient{
+  0%{ background-position:0% 50% }
+  50%{ background-position:100% 50% }
+  100%{ background-position:0% 50% }
+}
+
+/* small helper to make inner content sit on plain bg while keeping animated border visible */
+.animated-border > *{
+  position:relative;
+  z-index:1;
 }

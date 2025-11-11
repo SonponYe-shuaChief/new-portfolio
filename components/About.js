@@ -5,7 +5,7 @@ export default function About(){
     <SectionWrapper id="about">
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div className="flex items-center justify-center">
-          <img src="/profile.svg" alt="profile" className="w-56 h-56 rounded-lg object-cover shadow-soft" />
+          <img src="/profile.svg" alt="profile" className="w-72 h-72 rounded-lg object-cover shadow-soft" />
         </div>
         <div>
           <h2 className="section-title text-2xl">About</h2>

@@ -16,7 +16,7 @@ export default function Home(){
       <IntroSequence onComplete={() => setRevealed(true)} />
       <main className={`transition-opacity duration-700 ${revealed ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         <Navbar />
-        <Hero />
+        <Hero revealed={revealed} />
         <About />
         <ProjectsSection />
         <SkillsSection />
