@@ -200,3 +200,18 @@ body{
   box-shadow: 0 0 0 3px rgba(0,179,122,0.12);
   border-radius: 6px;
 }
+
+/* Project card visuals: light green border and spacing; image at top */
+.project-card{
+  border: 1px solid rgba(0,179,122,0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 160ms ease;
+}
+.project-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+  border-color: rgba(0,179,122,0.16);
+}
+.project-card img{ display:block }
+
+/* slightly larger gap for project badges */
+.project-card .mt-4 { margin-top: 0.9rem }
