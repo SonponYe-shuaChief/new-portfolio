@@ -75,9 +75,10 @@ export default function IntroSequence({ onComplete }){
                       onComplete && onComplete()
                     },650)
                   }}
-                  className="btn-press rounded-full w-44 h-44 flex items-center justify-center text-white text-lg font-semibold shadow-lg"
+                  aria-label="Reveal site"
+                  className="btn-press-hero rounded-full flex items-center justify-center text-white text-lg font-semibold shadow-lg relative"
                 >
-                  <div className="animate-pulse">
+                  <div className="animate-pulse text-2xl md:text-3xl lg:text-4xl font-bold">
                     press me
                   </div>
                 </motion.button>

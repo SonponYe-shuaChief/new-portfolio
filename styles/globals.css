@@ -37,6 +37,39 @@ body{
   box-shadow:0 6px 18px rgba(0,179,122,0.14), 0 0 30px rgba(0,179,122,0.06) inset;
 }
 
+/* large glossy press button used in Intro overlay */
+.btn-press-hero{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:11rem; /* base size (kept same as w-44) */
+  height:11rem;
+  border-radius:9999px;
+  background: linear-gradient(180deg, rgba(118,255,206,1), rgba(0,179,122,1));
+  color: white;
+  transform: scale(3); /* visually ~3x bigger */
+  transform-origin:center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35), 0 8px 30px rgba(0,179,122,0.16) inset;
+  transition: transform 200ms ease, filter 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn-press-hero:hover{ filter:brightness(1.03); transform: scale(3.05) }
+.btn-press-hero:active{ transform: scale(2.95) }
+.btn-press-hero::after{
+  /* glossy highlight */
+  content: '';
+  position: absolute;
+  left: 8%;
+  top: 6%;
+  width: 84%;
+  height: 40%;
+  border-radius: 9999px 9999px 60% 60% / 60% 60% 40% 40%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.12));
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
 .btn-press:hover{
   filter:brightness(.95);
 }
@@ -86,6 +119,11 @@ body{
   mix-blend-mode: multiply;
 }
 
+/* Semi-transparent hero panel so hero content sits on a translucent background */
+.hero-bg{
+  background-color: rgba(255,255,255,0.9); /* 0.9 opacity as requested */
+}
+
 /* animated decorative border used for hero and card outlines */
 .animated-border{
   position:relative;
@@ -116,4 +154,49 @@ body{
 .animated-border > *{
   position:relative;
   z-index:1;
+}
+
+/* Navbar link animation: animated underline + accent color on hover/focus */
+.nav-link{
+  position:relative;
+  display:inline-block;
+  padding:0.25rem 0;
+  color:inherit;
+  transition: color 180ms ease, transform 160ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-link::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), rgba(0,127,95,0.9));
+  transition: width 220ms cubic-bezier(.2,.9,.2,1);
+  border-radius: 2px;
+}
+.nav-link:hover, .nav-link:focus{
+  color: var(--accent);
+  transform: translateY(-3px);
+  outline: none;
+}
+.nav-link:hover::after, .nav-link:focus::after{
+  width: 100%;
+}
+
+/* Brand hover subtle lift */
+.nav-brand{
+  transition: transform 180ms ease, color 180ms ease;
+  will-change: transform;
+}
+.nav-brand:hover{
+  transform: translateY(-3px) scale(1.02);
+  color: var(--accent);
+}
+
+/* keyboard focus visible for accessibility */
+.nav-link:focus-visible{
+  box-shadow: 0 0 0 3px rgba(0,179,122,0.12);
+  border-radius: 6px;
 }

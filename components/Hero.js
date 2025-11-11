@@ -4,8 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 
 export default function Hero({ revealed = false }){
   // Titles to show in the hero after intro overlay is dismissed
-  const titles = ['software engineer', 'UI/UX designer', 'systems designer', 'game dev']
-  const appendSuffix = ' ish (in training)'
+  // added extra playful roles per user request
+  const titles = ['software engineer', 'UI/UX designer', 'systems designer', 'game dev', 'anime watcher', 'product designer', '#ETTU']
+  // Append suffix applied only to the 'game dev' title
+  const appendSuffix = ' .... ish'
 
   const [display, setDisplay] = useState('')
   const [mode, setMode] = useState('idle') // idle until revealed, then typing | pause | deleting | appendTyping | appendPause | appendDeleting
@@ -102,7 +104,7 @@ export default function Hero({ revealed = false }){
   },[mode, revealed])
 
   return (
-    <section className="section min-h-[75vh] flex items-center relative overflow-hidden animated-border">
+    <section className="section min-h-[75vh] flex items-center relative overflow-hidden animated-border hero-bg">
       <div className="hero-decor" aria-hidden="true" />
       <div className="container-wide">
         <div className="flex flex-col md:flex-row items-center gap-10 md:gap-20">
