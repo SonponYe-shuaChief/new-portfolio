@@ -2,9 +2,32 @@ import SectionWrapper from './SectionWrapper'
 import ProjectCard from './ProjectCard'
 
 const projects = [
-  { title: 'CalmNotes', desc: 'A minimal note-taking app with distraction-free UI.', tech:['React','Next','Tailwind'] },
-  { title: 'GreenShop', desc: 'Eco-friendly e-commerce template focusing on clarity.', tech:['React','Stripe','SSR'] },
-  { title: 'FlowCharts', desc: 'Simple diagramming with smooth interactions.', tech:['Canvas','TS'] },
+  {
+    title: 'Levi – AI-Powered Restaurant Assistant',
+    desc: 'AI assistant to streamline restaurant operations: reminders, purchase logs, and analytics. Integrated ElevenLabs for human-like voice interactions.',
+    tech: ['LLM APIs','ElevenLabs','React','Supabase']
+  },
+  {
+    title: 'UG Navigate',
+    desc: 'Campus shortest path finder using graph algorithms to compute optimal routes across campus.',
+    tech: ['Algorithms','React Native']
+  },
+  {
+    title: 'Restaurant Management System',
+    desc: 'Full-stack solution built with React Native and Supabase featuring modern UI and automated reporting.',
+    tech: ['React Native','Supabase']
+  },
+  {
+    title: 'Aya – AI Powered Store',
+    desc: 'AI system assisting sellers with customer interactions and order facilitation.',
+    tech: ['LLM APIs','React']
+  },
+  {
+    title: 'Figma Design — Restaurant App',
+    desc: 'High-fidelity UI design created in Figma showcasing modern, user-centred screens.',
+    link: 'https://www.figma.com/design/MHyWNFmcRCuaquKlXWJH1O/Untitled',
+    tech: ['Figma','UI/UX']
+  }
 ]
 
 export default function ProjectsSection(){

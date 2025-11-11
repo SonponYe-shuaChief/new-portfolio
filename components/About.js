@@ -9,7 +9,13 @@ export default function About(){
         </div>
         <div>
           <h2 className="section-title text-2xl">About</h2>
-          <p className="mt-4 text-[var(--text)]/90 leading-relaxed">I design and build simple systems that respect people's time and attention. I believe minimal interfaces with generous whitespace are kinder, clearer, and more human.</p>
+          <p className="mt-4 text-[var(--text)]/90 leading-relaxed">Motivated Computer Science student specializing in software development, AI integration, and UI/UX design. Seeking an internship to apply technical skills in real-world projects and gain industry mentorship. Passionate about problem-solving, technology innovation, and collaborative work.</p>
+
+          <h3 className="mt-6 font-semibold">Education</h3>
+          <p className="text-[var(--text)]/80">University of Ghana — BSc Computer Science (Expected 2027) • GPA: 3.6</p>
+
+          <h3 className="mt-4 font-semibold">Technical Skills</h3>
+          <p className="text-[var(--text)]/80">Python • C++ • JavaScript • React • React Native • Supabase • MySQL • LLM APIs • ElevenLabs • Figma • Git</p>
         </div>
       </div>
     </SectionWrapper>

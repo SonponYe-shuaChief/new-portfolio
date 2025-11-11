@@ -1,14 +1,51 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Typewriter } from 'react-simple-typewriter'
 
 export default function IntroSequence({ onComplete }){
-  const [stage, setStage] = useState('typing')
+  const phrase = 'vibing to the rhythm of life'
+  const [stage, setStage] = useState('typing') // typing | pause | deleting | button
+  const [display, setDisplay] = useState('')
   const [visible, setVisible] = useState(true)
+  const indexRef = useRef(0)
+  const mounted = useRef(true)
 
   useEffect(()=>{
-    // when typing loop complete, show button
-  },[])
+    mounted.current = true
+    if(stage === 'typing'){
+      const t = setInterval(()=>{
+        indexRef.current += 1
+        setDisplay(phrase.slice(0, indexRef.current))
+        if(indexRef.current >= phrase.length){
+          clearInterval(t)
+          setStage('pause')
+        }
+      }, 60)
+      return ()=> clearInterval(t)
+    }
+
+    if(stage === 'pause'){
+      const timeout = setTimeout(()=>{
+        setStage('deleting')
+      }, 1200)
+      return ()=> clearTimeout(timeout)
+    }
+
+    if(stage === 'deleting'){
+      const t2 = setInterval(()=>{
+        indexRef.current -= 1
+        if(indexRef.current < 0){
+          clearInterval(t2)
+          setDisplay('')
+          setStage('button')
+          return
+        }
+        setDisplay(phrase.slice(0, indexRef.current))
+      }, 40)
+      return ()=> clearInterval(t2)
+    }
+
+    return ()=>{ mounted.current = false }
+  },[stage])
 
   return (
     <AnimatePresence>
@@ -22,18 +59,10 @@ export default function IntroSequence({ onComplete }){
         >
           <div className="text-center">
             {/* Typing stage */}
-            {stage === 'typing' && (
+            {stage !== 'button' && (
               <div className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[var(--text)] glow-green">
-                <Typewriter
-                  words={["vibing to the rhythm of life"]}
-                  loop={1}
-                  cursor
-                  cursorStyle="|"
-                  typeSpeed={60}
-                  deleteSpeed={40}
-                  delaySpeed={1200}
-                  onLoopDone={() => setStage('button')}
-                />
+                <span>{display}</span>
+                <span className="ml-1">{stage !== 'button' ? <span className="animate-pulse">|</span> : null}</span>
               </div>
             )}
 
@@ -46,7 +75,6 @@ export default function IntroSequence({ onComplete }){
                   onClick={async ()=>{
                     // play fade-out then call onComplete
                     setVisible(false)
-                    // small delay to let exit animation finish
                     setTimeout(()=>{
                       onComplete && onComplete()
                     },650)
